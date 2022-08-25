@@ -138,6 +138,7 @@
     animation: headerNotifyGrowth ease .2s;
     will-change: opacity, transform;
     display: none;
+    z-index: 1;
 }
 
 @keyframes headerNotifyGrowth {
@@ -417,9 +418,15 @@
 }
 
 /* Tìm kiếm */
+.header__search-input-wrap {
+    flex:1;
+    height: 100%;
+    position: relative;
+}
+
 .header__search-input {
     height: 100%;
-    flex: 1;
+    width: 100%;
     border: none;
     font-size: 1.6rem;
     color: var(--text-color);
@@ -428,10 +435,60 @@
     border-radius: 2px;
 }
 
+.header__search-input:focus ~ .header__search-history {
+    display: block;
+}
+
+/* Search History */
+.header__search-history {
+    position: absolute;
+    left: 0;
+    top: calc(100% + 2px);
+    width: calc(100% - 16px);
+    background-color: var(--white-color);
+    border-radius: 2px;
+    box-shadow: 0 1px 2px #dcdcdc;
+    display: none;
+    overflow: hidden;
+}
+
+.header__search-history-heading {
+    font-size: 1.4rem;
+    color: #999;
+    margin: 6px 12px;
+    font-weight: 400px;
+}
+
+.header__search-history-list {
+    padding-left: 0;
+    list-style: none;
+    margin: 6px 0 0;
+}
+
+.header__search-history-item {
+    height: 38px;
+    font-size: 1.4rem;
+    padding: 0 12px;
+    
+}
+
+.header__search-history-item:hover {
+    background-color: var(--hover-color);
+    cursor: pointer;
+}
+
+.header__search-history-item a {
+    line-height: 38px;
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+/* Select */
 .header__search-select {
     border-left: 1px solid var(--border-color);
     padding-left: 16px;
     position: relative;
+    cursor: pointer;
     
 }
 
@@ -459,21 +516,22 @@
     width: 130px;
     list-style: none;
     padding-left: 0;
-    box-shadow: 0 1px 2px rgb(220, 220, 220);
-    /* background-color: var(--white-color);
-    border-radius: 3px;  */
+    box-shadow: 0 1px 2px #dcdcdc;
+    background-color: var(--white-color);
+    border-radius: 2px; 
     /* overflow: hidden; */
-    /* display: none; */
+    display: none;
+    animation: fadeIn ease-in .2s;
 }
 
 /* .header__search-option-item:first-child {
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
 }
 
 .header__search-option-item:last-child {
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
 } */
 
 .header__search-option::after {
@@ -487,14 +545,12 @@
 }
 
 .header__search-option-item {
-    background-color: var(--white-color);
     padding: 8px 8px;
-    border-radius: 5px;
 }
 
 .header__search-option-item:hover {
     background-color: #fafafa;
-    cursor: pointer;
+    border-radius: 2px;
 }
 
 .header__search-option-item span {
